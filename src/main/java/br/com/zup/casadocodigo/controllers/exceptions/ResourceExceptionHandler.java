@@ -14,6 +14,8 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
+import br.com.zup.casadocodigo.controllers.exceptions.customized.ResourceNotFoundException;
+
 @ControllerAdvice
 public class ResourceExceptionHandler {
 	
@@ -34,6 +36,18 @@ public class ResourceExceptionHandler {
 			err.addError(f.getField(), messageSource.getMessage(f, LocaleContextHolder.getLocale()));
 		}
 		
+		return ResponseEntity.status(status).body(err);
+	}
+	
+	@ExceptionHandler(ResourceNotFoundException.class)
+	public ResponseEntity<StandardError> entityNotFound(ResourceNotFoundException e, HttpServletRequest request) {
+		HttpStatus status = HttpStatus.NOT_FOUND;
+		StandardError err = new StandardError();
+		err.setTimestamp(Instant.now());
+		err.setStatus(status.value());
+		err.setError("Resource not found");
+		err.setMessage(e.getMessage());
+		err.setPath(request.getRequestURI());
 		return ResponseEntity.status(status).body(err);
 	}
 }
