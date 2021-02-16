@@ -6,6 +6,7 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
+import br.com.zup.casadocodigo.controllers.validations.UniqueValue;
 import br.com.zup.casadocodigo.entities.Author;
 
 public class AuthorInsertForm implements Serializable {
@@ -17,15 +18,18 @@ public class AuthorInsertForm implements Serializable {
 
 	@Email
 	@NotBlank
+	@UniqueValue(domainClass = Author.class, fieldName = "email", message = "Este email já existe!")
 	private String email;
 
 	@Size(max = 400)
 	@NotBlank
 	private String description;
+	
+	public AuthorInsertForm() {
+	}
 
 	public AuthorInsertForm(@NotBlank String name, @Email @NotBlank String email,
 			@Size(max = 400) @NotBlank String description) {
-		super();
 		this.name = name;
 		this.email = email;
 		this.description = description;

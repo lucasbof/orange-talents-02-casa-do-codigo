@@ -10,22 +10,22 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.zup.casadocodigo.controllers.forms.AuthorInsertForm;
-import br.com.zup.casadocodigo.entities.Author;
-import br.com.zup.casadocodigo.repositories.AuthorRepository;
+import br.com.zup.casadocodigo.controllers.forms.CategoryInsertForm;
+import br.com.zup.casadocodigo.entities.Category;
+import br.com.zup.casadocodigo.repositories.CategoryRepository;
 
 @RestController
-@RequestMapping(value = "/authors")
-public class AuthorController {
+@RequestMapping(value = "/categories")
+public class CategoryController {
 
 	@Autowired
-	private AuthorRepository repository;
+	private CategoryRepository repository;
 	
 	@PostMapping
 	@Transactional
-	public ResponseEntity<Author> insert(@Valid @RequestBody AuthorInsertForm form) {
-		Author author = form.toModel();
-		author = repository.save(author);
-		return ResponseEntity.ok(author);
+	public ResponseEntity<Category> insert(@Valid @RequestBody CategoryInsertForm form) {
+		Category category = form.toModel();
+		category = repository.save(category);
+		return ResponseEntity.ok(category);
 	}
 }
