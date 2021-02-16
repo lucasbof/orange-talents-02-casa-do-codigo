@@ -15,6 +15,11 @@ public class UniqueValueValidator implements ConstraintValidator<UniqueValue, Ob
 	private String fieldName;
 	private Class<?> domainClass;
 	
+	/*
+		 Este obj será injetado pelo Spring se a anotação estiver fora da entidade, pois estaria no contexto do Spring, e assim funcionaria normalmente
+		 Caso esteja na entidade, o Hibernate que faria a injeção, mas ele não conseguiria fazer esta injeção, por não estar no contexto do Spring
+		 e assim, este objeto será nulo podendo lançar NullPointerException em isValid
+	 */
 	@PersistenceContext
 	private EntityManager manager;
 	
