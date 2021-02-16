@@ -24,7 +24,7 @@ public class Author implements Serializable {
 	@Column(nullable = false)
 	private String name;
 	
-	@Column(nullable = false)
+	@Column(nullable = false, unique = true)
 	private String email;
 	
 	@Column(length = 400, nullable = false)
