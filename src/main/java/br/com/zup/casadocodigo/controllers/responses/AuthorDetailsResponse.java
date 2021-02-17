@@ -1,17 +1,17 @@
-package br.com.zup.casadocodigo.dto;
+package br.com.zup.casadocodigo.controllers.responses;
 
 import java.io.Serializable;
 
 import br.com.zup.casadocodigo.entities.Author;
 
-public class AuthorDetailsDTO implements Serializable {
+public class AuthorDetailsResponse implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
 	private String name;
 	private String description;
 
-	public AuthorDetailsDTO(Author author) {
+	public AuthorDetailsResponse(Author author) {
 		this.name = author.getName();
 		this.description = author.getDescription();
 	}

@@ -22,6 +22,7 @@ public class Category implements Serializable {
 	@Column(nullable = false, unique = true)
 	private String name;
 	
+	@Deprecated
 	public Category() {
 	}
 
@@ -33,6 +34,7 @@ public class Category implements Serializable {
 		return id;
 	}
 
+	// O ID é opcional, por isso existe este setter
 	public void setId(Long id) {
 		this.id = id;
 	}

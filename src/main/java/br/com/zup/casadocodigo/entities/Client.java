@@ -59,6 +59,10 @@ public class Client implements Serializable {
 	@JoinColumn(name = "state_id")
 	@JsonInclude(Include.NON_NULL)
 	private CountryState state;
+	
+	@Deprecated
+	public Client() {
+	}
 
 	public Client(String name, String lastName, String document, String email, String address, String complement,
 			String city, String cep, String phone, Country country, CountryState state) {
@@ -75,6 +79,7 @@ public class Client implements Serializable {
 		this.state = state;
 	}
 	
+	// O ID é opcional, por isso existe este setter
 	public void setId(Long id) {
 		this.id = id;
 	}

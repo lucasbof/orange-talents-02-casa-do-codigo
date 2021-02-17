@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.zup.casadocodigo.controllers.exceptions.customized.ResourceNotFoundException;
-import br.com.zup.casadocodigo.dto.BookDetailsDTO;
+import br.com.zup.casadocodigo.controllers.responses.BookDetailsResponse;
 import br.com.zup.casadocodigo.entities.Book;
 
 @RestController
@@ -23,9 +23,9 @@ public class BookDetails {
 	
 	@GetMapping(value = "/{id}")
 	@Transactional(readOnly = true)
-	public ResponseEntity< BookDetailsDTO> findById(@PathVariable Long id) {
+	public ResponseEntity< BookDetailsResponse> findById(@PathVariable Long id) {
 		Book book = manager.find(Book.class, id);
 		if(book == null) throw new ResourceNotFoundException("Não foi encontrado um livro para o ID informado");
-		return ResponseEntity.ok(new BookDetailsDTO(book));
+		return ResponseEntity.ok(new BookDetailsResponse(book));
 	}
 }

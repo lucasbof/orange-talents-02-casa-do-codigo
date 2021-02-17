@@ -15,6 +15,7 @@ public class CategoryInsertForm implements Serializable {
 	@NotBlank
 	private String name;
 	
+	@Deprecated
 	public CategoryInsertForm() {
 	}
 

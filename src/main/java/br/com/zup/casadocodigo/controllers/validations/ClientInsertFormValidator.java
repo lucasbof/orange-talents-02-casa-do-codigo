@@ -34,9 +34,7 @@ public class ClientInsertFormValidator implements ConstraintValidator<ClientInse
 				errorsList.add(new FieldMessage("stateId", "O país informado possuí estados vinculados, assim é obrigatório informar um ID desses estados"));
 			}
 			else {
-				CountryState cs = new CountryState();
-				cs.setId(form.getStateId());
-				if(!resultList.contains(cs)) {
+				if(!resultList.removeIf(cs -> cs.getId() == form.getStateId())) {
 					errorsList.add(new FieldMessage("stateId", "Não foi encontrado um estado de ID " + form.getStateId() + " vinculado ao país de ID " + form.getCountryId()));
 				}
 			}

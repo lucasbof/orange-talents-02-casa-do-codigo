@@ -1,4 +1,4 @@
-package br.com.zup.casadocodigo.dto;
+package br.com.zup.casadocodigo.controllers.responses;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -6,7 +6,7 @@ import java.time.format.DateTimeFormatter;
 
 import br.com.zup.casadocodigo.entities.Book;
 
-public class BookDetailsDTO implements Serializable {
+public class BookDetailsResponse implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
@@ -18,9 +18,9 @@ public class BookDetailsDTO implements Serializable {
 	private String index;
 	private String publishDate;
 	
-	private AuthorDetailsDTO author;
+	private AuthorDetailsResponse author;
 
-	public BookDetailsDTO(Book book) {
+	public BookDetailsResponse(Book book) {
 		this.title = book.getTitle();
 		this.isbn = book.getIsbn();
 		this.pagesTotal = book.getPagesTotal();
@@ -28,7 +28,7 @@ public class BookDetailsDTO implements Serializable {
 		this.synopsis = book.getSynopsis();
 		this.index = book.getIndex();
 		this.publishDate = book.getPublishDate().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-		this.author = new AuthorDetailsDTO(book.getAuthor());
+		this.author = new AuthorDetailsResponse(book.getAuthor());
 	}
 
 	public String getTitle() {
@@ -55,7 +55,7 @@ public class BookDetailsDTO implements Serializable {
 		return index;
 	}
 
-	public AuthorDetailsDTO getAuthor() {
+	public AuthorDetailsResponse getAuthor() {
 		return author;
 	}
 

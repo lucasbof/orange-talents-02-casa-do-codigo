@@ -33,6 +33,7 @@ public class Author implements Serializable {
 	@Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE", nullable = false)
 	private Instant createdAt;
 	
+	@Deprecated
 	public Author() {
 	}
 
@@ -46,6 +47,7 @@ public class Author implements Serializable {
 		return id;
 	}
 
+	// O ID é opcional, por isso existe este setter
 	public void setId(Long id) {
 		this.id = id;
 	}

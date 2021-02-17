@@ -55,6 +55,7 @@ public class Book implements Serializable {
 	@JoinColumn(name = "category_id", nullable = false)
 	private Category category;
 
+	@Deprecated
 	public Book() {
 	}
 
@@ -75,6 +76,7 @@ public class Book implements Serializable {
 		return id;
 	}
 
+	// O ID é opcional, por isso existe este setter
 	public void setId(Long id) {
 		this.id = id;
 	}

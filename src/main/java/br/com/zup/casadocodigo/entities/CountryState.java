@@ -26,6 +26,7 @@ public class CountryState implements Serializable {
 	@JoinColumn(name = "country_id")
 	private Country country;
 	
+	@Deprecated
 	public CountryState() {
 	}
 
@@ -38,6 +39,7 @@ public class CountryState implements Serializable {
 		return id;
 	}
 
+	// O ID é opcional, por isso existe este setter
 	public void setId(Long id) {
 		this.id = id;
 	}

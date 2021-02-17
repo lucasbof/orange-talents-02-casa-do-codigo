@@ -25,6 +25,7 @@ public class AuthorInsertForm implements Serializable {
 	@NotBlank
 	private String description;
 	
+	@Deprecated
 	public AuthorInsertForm() {
 	}
 

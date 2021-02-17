@@ -22,6 +22,7 @@ public class Country implements Serializable {
 	@Column(nullable = false)
 	private String name;
 	
+	@Deprecated
 	public Country() {
 	}
 
@@ -33,6 +34,7 @@ public class Country implements Serializable {
 		return id;
 	}
 
+	// O ID é opcional, por isso existe este setter
 	public void setId(Long id) {
 		this.id = id;
 	}

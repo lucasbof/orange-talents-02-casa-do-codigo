@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.zup.casadocodigo.controllers.forms.BookInsertForm;
-import br.com.zup.casadocodigo.dto.BookFindAllDTO;
+import br.com.zup.casadocodigo.controllers.responses.BookFindAllResponse;
 import br.com.zup.casadocodigo.entities.Book;
 
 @RestController
@@ -38,8 +38,8 @@ public class BookController {
 	
 	@GetMapping
 	@Transactional(readOnly = true)
-	public ResponseEntity<List<BookFindAllDTO>> findAll() {
-		TypedQuery<BookFindAllDTO> query = manager.createQuery("SELECT new br.com.zup.casadocodigo.dto.BookFindAllDTO(b.id, b.title) FROM Book b", BookFindAllDTO.class);
+	public ResponseEntity<List<BookFindAllResponse>> findAll() {
+		TypedQuery<BookFindAllResponse> query = manager.createQuery("SELECT new br.com.zup.casadocodigo.controllers.responses.BookFindAllResponse(b.id, b.title) FROM Book b", BookFindAllResponse.class);
 		return ResponseEntity.ok(query.getResultList());
 	}
 }
