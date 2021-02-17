@@ -10,7 +10,7 @@ import javax.validation.ConstraintValidatorContext;
 
 import org.springframework.util.Assert;
 
-public class UniqueValueValidator implements ConstraintValidator<UniqueValue, Object> {
+public class UniqueValueValidator implements ConstraintValidator<UniqueValue, String> {
 
 	private String fieldName;
 	private Class<?> domainClass;
@@ -31,9 +31,10 @@ public class UniqueValueValidator implements ConstraintValidator<UniqueValue, Ob
 	}
 
 	@Override
-	public boolean isValid(Object value, ConstraintValidatorContext context) {
-		Query query = manager.createQuery("SELECT 1 FROM " + domainClass.getName() + " WHERE " + fieldName + " = :value");
-		query.setParameter("value", value);
+	public boolean isValid(String value, ConstraintValidatorContext context) {
+		Query query = manager.createQuery("SELECT 1 FROM " + domainClass.getName() + " WHERE LOWER(" + fieldName + ") = LOWER(:value)");
+		
+		query.setParameter("value", value.trim());
 		List<?> resultList = query.getResultList();
 		
 		Assert.state(resultList.size() <= 1, "Foi encontrado mais de um " + domainClass + "com o atributo " + fieldName );
