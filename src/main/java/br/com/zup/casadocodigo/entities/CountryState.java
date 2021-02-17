@@ -25,6 +25,9 @@ public class CountryState implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "country_id")
 	private Country country;
+	
+	public CountryState() {
+	}
 
 	public CountryState(String name, Country country) {
 		this.name = name;
@@ -45,5 +48,30 @@ public class CountryState implements Serializable {
 
 	public Country getCountry() {
 		return country;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		CountryState other = (CountryState) obj;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		return true;
 	}
 }

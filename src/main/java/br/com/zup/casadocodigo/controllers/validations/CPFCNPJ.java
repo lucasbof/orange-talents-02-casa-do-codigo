@@ -10,18 +10,14 @@ import javax.validation.Constraint;
 import javax.validation.Payload;
 
 @Documented
-@Constraint(validatedBy = { ExistsIdValidator.class })
-@Target({ ElementType.FIELD, ElementType.PARAMETER })
+@Constraint(validatedBy = { CPFCNPJValidator.class })
+@Target({ ElementType.FIELD })
 @Retention(RetentionPolicy.RUNTIME)
-public @interface ExitsId {
+public @interface CPFCNPJ {
 
-	String message() default "Esta ID não existe";
+	String message() default "O cpf/cnpj informado é inválido!";
 
 	Class<?>[] groups() default {};
 
 	Class<? extends Payload>[] payload() default {};
-	
-	Class<?> domainClass();
-	
-	String fieldName();
 }

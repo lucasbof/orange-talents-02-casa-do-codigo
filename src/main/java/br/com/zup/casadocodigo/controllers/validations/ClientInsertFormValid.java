@@ -10,18 +10,14 @@ import javax.validation.Constraint;
 import javax.validation.Payload;
 
 @Documented
-@Constraint(validatedBy = { ExistsIdValidator.class })
-@Target({ ElementType.FIELD, ElementType.PARAMETER })
+@Constraint(validatedBy = { ClientInsertFormValidator.class })
+@Target({ ElementType.TYPE })
 @Retention(RetentionPolicy.RUNTIME)
-public @interface ExitsId {
+public @interface ClientInsertFormValid {
 
-	String message() default "Esta ID não existe";
+	String message() default "Erro de Validação";
 
 	Class<?>[] groups() default {};
 
 	Class<? extends Payload>[] payload() default {};
-	
-	Class<?> domainClass();
-	
-	String fieldName();
 }
