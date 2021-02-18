@@ -9,9 +9,10 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 @Entity
-@Table(name = "tb_state")
+@Table(name = "tb_state", uniqueConstraints = {@UniqueConstraint(columnNames = {"country_id", "name"})})
 public class CountryState implements Serializable {
 
 	private static final long serialVersionUID = 1L;
