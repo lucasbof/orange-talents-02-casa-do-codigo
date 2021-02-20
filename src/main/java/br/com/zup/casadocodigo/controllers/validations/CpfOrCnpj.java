@@ -9,11 +9,19 @@ import java.lang.annotation.Target;
 import javax.validation.Constraint;
 import javax.validation.Payload;
 
+import org.hibernate.validator.constraints.CompositionType;
+import org.hibernate.validator.constraints.ConstraintComposition;
+import org.hibernate.validator.constraints.br.CNPJ;
+import org.hibernate.validator.constraints.br.CPF;
+
 @Documented
-@Constraint(validatedBy = { CPFCNPJValidator.class })
+@Constraint(validatedBy = { })
 @Target({ ElementType.FIELD })
 @Retention(RetentionPolicy.RUNTIME)
-public @interface CPFCNPJ {
+@CPF(message = "O CPF é inválido")
+@CNPJ(message = "O CNPJ é inválido")
+@ConstraintComposition(CompositionType.OR)
+public @interface CpfOrCnpj {
 
 	String message() default "O cpf/cnpj informado é inválido!";
 

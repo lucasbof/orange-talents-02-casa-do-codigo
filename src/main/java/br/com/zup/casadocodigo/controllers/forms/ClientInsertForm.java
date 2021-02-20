@@ -7,7 +7,7 @@ import javax.validation.constraints.NotNull;
 
 import org.springframework.util.Assert;
 
-import br.com.zup.casadocodigo.controllers.validations.CPFCNPJ;
+import br.com.zup.casadocodigo.controllers.validations.CpfOrCnpj;
 import br.com.zup.casadocodigo.controllers.validations.ClientInsertFormValid;
 import br.com.zup.casadocodigo.controllers.validations.ExitsId;
 import br.com.zup.casadocodigo.controllers.validations.UniqueValue;
@@ -26,7 +26,7 @@ public class ClientInsertForm {
 
 	@NotBlank
 	@UniqueValue(domainClass = Client.class, fieldName = "document")
-	@CPFCNPJ
+	@CpfOrCnpj
 	private String document;
 
 	@NotBlank
